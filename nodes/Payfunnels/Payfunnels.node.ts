@@ -262,7 +262,7 @@ export class Payfunnels implements INodeType {
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
 
-		const credentials = await this.getCredentials('apiKeyCred');
+		const credentials = await this.getCredentials('payfunnelsApi');
 
 		for (let i = 0; i < items.length; i++) {
 			try {
