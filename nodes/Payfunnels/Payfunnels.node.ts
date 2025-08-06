@@ -333,7 +333,7 @@ export class Payfunnels implements INodeType {
 						const cancellationOption = this.getNodeParameter('cancellationOption', i) as string;
 
 						const body: any = {
-							subscriptionId,
+							id: subscriptionId,
 							cancellationOption,
 						};
 
