@@ -50,6 +50,26 @@ export class PayfunnelsTrigger implements INodeType {
 						description: 'Trigger when a first recurring payment is made',
 					},
 					{
+						name: 'New Customer Created',
+						value: 'new_customer',
+						description: 'Trigger when a new customer is created',
+					},
+					{
+						name: 'One Time Setup Fees Created',
+						value: 'setupfees_created',
+						description: 'Triggers when a new one time setup fees is created',
+					},
+					{
+						name: 'One Time Setup Fees Deleted',
+						value: 'setupfees_deleted',
+						description: 'Triggers when one time setup fees is deleted',
+					},
+					{
+						name: 'One Time Setup Fees Updated',
+						value: 'setupfees_updated',
+						description: 'Triggers when a one time setup fees is updated',
+					},
+					{
 						name: 'Payment Failed',
 						value: 'payment_failed',
 						description: 'Trigger when a payment fails',

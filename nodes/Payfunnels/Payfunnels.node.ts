@@ -43,6 +43,10 @@ export class Payfunnels implements INodeType {
 						name: 'Subscription',
 						value: 'subscription',
 					},
+					{
+						name: 'One Time Setup Fee',
+						value: 'oneTimeSetupFees'
+					}
 				],
 				default: 'payment',
 			},
@@ -102,6 +106,31 @@ export class Payfunnels implements INodeType {
 						value: 'cancel',
 						description: 'Cancel a subscription',
 						action: 'Cancel subscription',
+					},
+				],
+				default: 'list',
+			},
+
+			// ----------------------------------
+			//         One time setup fees Operations - List one time setup fees
+			// ----------------------------------
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				displayOptions: {
+					show: {
+						resource: ['oneTimeSetupFees'],
+					},
+				},
+				options: [
+					{
+						name: 'List',
+						value: 'list',
+						description:
+							'Retrieves a list of one time setup fees based on filters like page and limit',
+						action: 'List one time setup fees',
 					},
 				],
 				default: 'list',
@@ -220,7 +249,7 @@ export class Payfunnels implements INodeType {
 				},
 				displayOptions: {
 					show: {
-						resource: ['payment', 'subscription'],
+						resource: ['payment', 'subscription', 'oneTimeSetupFees'],
 						operation: ['list'],
 					},
 				},
@@ -236,7 +265,7 @@ export class Payfunnels implements INodeType {
 				},
 				displayOptions: {
 					show: {
-						resource: ['payment', 'subscription'],
+						resource: ['payment', 'subscription', 'oneTimeSetupFees'],
 						operation: ['list'],
 					},
 				},
@@ -351,6 +380,24 @@ export class Payfunnels implements INodeType {
 								'Content-Type': 'application/json',
 							},
 							body,
+							json: true,
+						});
+					}
+				} else if (resource === 'oneTimeSetupFees') {
+					if (operation === 'list') {
+						const limit = this.getNodeParameter('limit', i) as number;
+						const page = this.getNodeParameter('page', i) as number;
+
+						const qs: any = { limit, page };
+
+						responseData = await this.helpers.httpRequest({
+							method: 'GET',
+							url: `${serverURL}/setupfees`,
+							headers: {
+								Authorization: credentials.id as string,
+								'Content-Type': 'application/json',
+							},
+							qs,
 							json: true,
 						});
 					}
