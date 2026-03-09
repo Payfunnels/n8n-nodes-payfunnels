@@ -6,7 +6,6 @@ import {
 	INodeTypeDescription,
 	IWebhookResponseData,
 	NodeOperationError,
-	NodeConnectionType,
 } from 'n8n-workflow';
 
 const serverURL = 'https://api.payfunnels.com/n8n-integration';
@@ -23,7 +22,7 @@ export class PayfunnelsTrigger implements INodeType {
 			name: 'Payfunnels Trigger',
 		},
 		inputs: [],
-		outputs: [NodeConnectionType.Main],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'payfunnelsApi',
@@ -116,6 +115,7 @@ export class PayfunnelsTrigger implements INodeType {
 						url: `${serverURL}/subscription/${webhookData.webhookId}`,
 						headers: {
 							Authorization: credentials.id as string,
+							'x-n8n-api-key': credentials.apiKey as string,
 						},
 						json: true,
 					});
@@ -154,6 +154,7 @@ export class PayfunnelsTrigger implements INodeType {
 						body,
 						headers: {
 							Authorization: credentials.id as string,
+							'x-n8n-api-key': credentials.apiKey as string,
 							'Content-Type': 'application/json',
 						},
 						json: true,
@@ -193,6 +194,7 @@ export class PayfunnelsTrigger implements INodeType {
 							},
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							json: true,

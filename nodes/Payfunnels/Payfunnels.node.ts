@@ -4,7 +4,6 @@ import {
 	INodeType,
 	INodeTypeDescription,
 	NodeOperationError,
-	NodeConnectionType,
 } from 'n8n-workflow';
 
 const serverURL = 'https://api.payfunnels.com/n8n-integration';
@@ -20,8 +19,8 @@ export class Payfunnels implements INodeType {
 		defaults: {
 			name: 'Payfunnels',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [
 			{
 				name: 'payfunnelsApi',
@@ -45,8 +44,8 @@ export class Payfunnels implements INodeType {
 					},
 					{
 						name: 'One Time Setup Fee',
-						value: 'oneTimeSetupFees'
-					}
+						value: 'oneTimeSetupFees',
+					},
 				],
 				default: 'payment',
 			},
@@ -313,6 +312,7 @@ export class Payfunnels implements INodeType {
 							url: `${serverURL}/payments`,
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							qs,
@@ -328,6 +328,7 @@ export class Payfunnels implements INodeType {
 							url: `${serverURL}/payments/refund`,
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							body: {
@@ -352,6 +353,7 @@ export class Payfunnels implements INodeType {
 							url: `${serverURL}/subscriptions`,
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							qs,
@@ -377,6 +379,7 @@ export class Payfunnels implements INodeType {
 							url: `${serverURL}/subscriptions/cancel`,
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							body,
@@ -395,6 +398,7 @@ export class Payfunnels implements INodeType {
 							url: `${serverURL}/setupfees`,
 							headers: {
 								Authorization: credentials.id as string,
+								'x-n8n-api-key': credentials.apiKey as string,
 								'Content-Type': 'application/json',
 							},
 							qs,

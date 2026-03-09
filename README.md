@@ -35,6 +35,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 - List Subscriptions
 - Cancel Subscription
 
+### One Time Setup Fees
+- One Time Setup Fees Created
+- One Time Setup Fees Updated
+- One Time Setup Fees Deleted
+- List One Time Setup Fees
 
 ## Credentials
 
