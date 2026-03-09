@@ -6,6 +6,7 @@ import {
 	INodeTypeDescription,
 	IWebhookResponseData,
 	NodeOperationError,
+	NodeConnectionType,
 } from 'n8n-workflow';
 
 const serverURL = 'https://api.payfunnels.com/n8n-integration';
@@ -22,7 +23,7 @@ export class PayfunnelsTrigger implements INodeType {
 			name: 'Payfunnels Trigger',
 		},
 		inputs: [],
-		outputs: ['main'],
+		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
 				name: 'payfunnelsApi',
