@@ -3,6 +3,7 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
+	NodeConnectionType,
 	NodeOperationError,
 } from 'n8n-workflow';
 
@@ -19,8 +20,8 @@ export class Payfunnels implements INodeType {
 		defaults: {
 			name: 'Payfunnels',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
 				name: 'payfunnelsApi',
